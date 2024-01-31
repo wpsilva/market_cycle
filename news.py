@@ -1,4 +1,5 @@
 import requests
+from GoogleNews import GoogleNews
 
 class News():
 
@@ -6,6 +7,14 @@ class News():
         arquivo = open("API_KEY.txt", "r")
         self.api_key = arquivo.read()
         self.news = []
+        self.googlenews = GoogleNews(lang='pt',region='BR', start='01/01/2020', end='02/31/2020', encode='utf-8')
+        self.googlenews.enableException(True)
+
+    def get_google_news(self):
+        self.googlenews.get_news('ibovespa')
+        self.news = self.googlenews.results()
+
+        return self.news
 
     def get_news(self):
         endpoint = "https://newsapi.org/v2/everything"
@@ -27,3 +36,6 @@ class News():
         else:
             print(f"Código de erro: {response.status_code}")
             print(f"Mensagem de erro: {response.text}")
+            return []
+        
+        return self.news
