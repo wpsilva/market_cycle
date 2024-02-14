@@ -22,5 +22,5 @@ ibov_janeiro['resultado'] = np.where((ibov_janeiro['variacao_mes'] * ibov_janeir
 
 percentual_ocorrencias = ibov_janeiro['resultado'].value_counts(normalize=True) * 100
 
-print(ibov_janeiro)
+#print(ibov_janeiro)
 print(percentual_ocorrencias)
